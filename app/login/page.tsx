@@ -1,59 +1,48 @@
 // app/login/page.tsx
 import React, { useState } from 'react';
 
-const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function LoginPage() {
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implement login logic here (e.g., call an API)
-    console.log('Login submitted:', { email, password });
+    alert('Logged in successfully!');
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px' }}>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
+    <div className="min-h-screen p-6 flex flex-col items-center justify-center bg-gray-100">
+      <h1 className="text-3xl font-bold mb-6">Login</h1>
+      <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
+        <div className="mb-4">
+          <label className="block text-gray-700">Email</label>
           <input
-            type="email"
-            id="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={credentials.email}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded mt-2"
+            type="email"
             required
-            style={{ width: '100%', padding: '8px', margin: '10px 0' }}
           />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="mb-6">
+          <label className="block text-gray-700">Password</label>
           <input
-            type="password"
-            id="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={credentials.password}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded mt-2"
+            type="password"
             required
-            style={{ width: '100%', padding: '8px', margin: '10px 0' }}
           />
         </div>
-        <button
-          type="submit"
-          style={{
-            backgroundColor: '#0070f3',
-            color: 'white',
-            padding: '10px 20px',
-            border: 'none',
-            cursor: 'pointer',
-          }}
-        >
+        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg shadow-md transition">
           Login
         </button>
       </form>
     </div>
   );
-};
-
-export default LoginPage;
+}
