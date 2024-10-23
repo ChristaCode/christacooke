@@ -1,111 +1,66 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import AboutSection from './about-section';
-import ReviewsSection from './reviews-section';
+import Link from 'next/link';
 import LanguageSwitcher from './components/LanguageSwitcher';
 
 export default function HomePage() {
   const { t } = useTranslation('common');
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
-      <h1 className="text-5xl font-bold mb-6 text-center">{t('welcome')}</h1>
-      <p className="text-xl mb-8 text-center max-w-2xl">
-        {t('intro')}
-      </p>
+    <div className="min-h-screen flex flex-col bg-gray-100 p-6">
       
-      {/* Navigation buttons */}
-      <div className="flex space-x-6 mb-12">
-        <InteractiveButton
-          label={t('seeMyWork')}
-          href="/portfolio"
-          codeSnippet='<a href="/portfolio" className="bg-blue-600 hover:bg-blue-700 ...">See My Work</a>'
-          glow={false}
-        />
-        <InteractiveButton
-          label={t('payNow')}
-          href="/pay"
-          codeSnippet='<a href="/pay" className="bg-green-500 hover:bg-green-600 ...">Pay Now</a>'
-          glow={false}
-        />
-        <InteractiveButton
-          label={t('chatWithLLM')}
-          href="/chat"
-          codeSnippet='<a href="/chat" className="bg-indigo-500 hover:bg-indigo-600 ...">Chat with LLM</a>'
-          glow={false}
-        />
-        <InteractiveButton
-          label={t('swaggerDocs')}
-          href="/api/swagger/api-docs"
-          codeSnippet='<a href="/api/swagger/api-docs" className="bg-yellow-500 hover:bg-yellow-600 ...">Swagger Docs</a>'
-          glow={true}
-        />
+      {/* Navigation buttons and Language Switcher */}
+      <div className="flex justify-between items-center mb-4 mt-4">
+        <div className="flex space-x-6">
+          <Link href="/about" className="py-3 px-5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition">
+            {t('aboutMe')}
+          </Link>
+          <Link href="/reviews" className="py-3 px-5 bg-green-500 hover:bg-green-600 text-white rounded-lg shadow-md transition">
+            {t('clientReviews')}
+          </Link>
+          <Link href="/technologies" className="py-3 px-5 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg shadow-md transition">
+            {t('technologiesUsed')}
+          </Link>
+          <Link href="/chat" className="py-3 px-5 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg shadow-md transition">
+            {t('chatWithLLM')}
+          </Link>
+          <Link href="/api/swagger/api-docs" className="py-3 px-5 bg-gray-600 hover:bg-gray-700 text-white rounded-lg shadow-md transition">
+            {t('swaggerDocs')}
+          </Link>
+        </div>
+
+        {/* Language Switcher aligned with the buttons */}
+        <div className="ml-4">
+          <LanguageSwitcher />
+        </div>
       </div>
 
-      {/* About Me Section */}
-      <AboutSection />
+      {/* Introduction paragraph */}
+      <h2 className="text-3xl font-bold text-center mb-6 mt-4 italic tracking-wider text-purple-700">
+        This is no ordinary site!
+      </h2>
 
-      {/* About This Site */}
-      <div className="mt-16 max-w-4xl">
-        <h2 className="text-2xl font-bold mb-6 text-center">{t('aboutThisSiteTitle')}</h2>
-        <p className="text-lg text-gray-700 text-center mb-8">
-          {t('aboutThisSiteDescription')}
-        </p>
-      </div>
+      {/* Description of the site */}
+      <p className="text-lg text-center mb-6">
+        This site serves as a demonstration of multiple powerful web development frameworks, showcasing how they can be used together to create a seamless and interactive experience. The following frameworks are utilized:
+      </p>
 
-      {/* Client Reviews Section */}
-      <ReviewsSection />
-
-      {/* Technologies Used Section */}
-      <div className="mt-12 max-w-4xl">
-        <h2 className="text-2xl font-bold mb-6 text-center">{t('technologiesUsedTitle')}</h2>
-        <ul className="list-disc list-inside text-gray-700 text-center space-y-2">
-          <li>{t('nextJs')}</li>
-          <li>{t('typescript')}</li>
-          <li>{t('tailwindCss')}</li>
-          <li>{t('storybookUi')}</li>
-          <li>{t('nextAuthJs')}</li>
-          <li>{t('prisma')}</li>
-          <li>{t('graphql')}</li>
-          <li>{t('postgres')}</li>
-          <li>{t('jest')}</li>
-          <li>{t('cypress')}</li>
-          <li>{t('swagger')}</li>
-          <li>{t('eslintPrettier')}</li>
-          <li>{t('llmIntegration')}</li>
-        </ul>
-      </div>
-
-      {/* Language Switcher */}
-      <div className="mt-8">
-        <LanguageSwitcher />
-      </div>
+      {/* List of frameworks used */}
+      <ul className="list-disc list-inside text-lg text-gray-700 text-center space-y-2">
+        <li><strong>Next.js</strong>: A powerful React framework for server-side rendering and static site generation.</li>
+        <li><strong>TypeScript</strong>: Provides static typing for improved code quality and development efficiency.</li>
+        <li><strong>Tailwind CSS</strong>: A utility-first CSS framework for rapid UI development.</li>
+        <li><strong>NextAuth.js</strong>: Authentication for Next.js applications, providing seamless login and session management.</li>
+        <li><strong>Prisma</strong>: An ORM that simplifies database management and interactions.</li>
+        <li><strong>GraphQL</strong>: A flexible query language for APIs that allows for efficient data fetching.</li>
+        <li><strong>PostgreSQL</strong>: A robust relational database management system used to store application data.</li>
+        <li><strong>Jest</strong>: A testing framework for ensuring code reliability and performance.</li>
+        <li><strong>Cypress</strong>: An end-to-end testing framework for validating user interactions.</li>
+        <li><strong>Swagger</strong>: For API documentation and testing.</li>
+        <li><strong>ESLint & Prettier</strong>: Tools for maintaining code quality and consistency.</li>
+        <li><strong>LLM Integration</strong>: Integrating language models for enhanced interactivity.</li>
+      </ul>
     </div>
   );
 }
-
-const InteractiveButton = ({ label, href, codeSnippet, glow }: { label: string; href: string; codeSnippet: string; glow: boolean }) => {
-  const [showCode, setShowCode] = useState(false);
-
-  return (
-    <div className={`relative inline-block mb-4 ${glow ? 'cursor-wand' : ''}`}>
-      <a 
-        href={href} 
-        className={`py-3 px-5 rounded-lg shadow-md transition ${glow ? 'bg-yellow-500 hover:bg-yellow-600 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}>
-        {label}
-      </a>
-      {glow && (
-        <button
-          className="absolute top-0 left-0"
-          onClick={() => setShowCode(!showCode)}
-        />
-      )}
-      {glow && showCode && (
-        <div className="absolute right-0 mt-2 p-4 bg-gray-900 text-white text-xs rounded-lg transition-opacity duration-300 ease-in-out">
-          <pre><code>{codeSnippet}</code></pre>
-        </div>
-      )}
-    </div>
-  );
-};
