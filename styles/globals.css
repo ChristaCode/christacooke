@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cursor-wand {
+    cursor: url('/cursor-wand.png'), pointer; /* Adjust the path */
+    box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.8);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .cursor-wand:hover {
+    box-shadow: 0 0 25px 8px rgba(255, 215, 0, 1);
+  }
+  
+  .glowing-button {
+    box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.8);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .glowing-button:hover .code-overlay {
+    display: block;
+  }
+  
+  .code-overlay {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+  }
+  
